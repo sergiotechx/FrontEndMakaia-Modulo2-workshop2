@@ -125,3 +125,57 @@ a:link {
     }
 
 }
+
+@media (max-width: 1000px) {
+    .app {
+        padding-left: 0rem;
+        padding-right: 0rem;
+
+        .main {
+            padding-left: 0rem;
+            padding-right: 0rem;
+            width: 100%;
+
+            section {
+                padding-left: 0rem;
+                padding-right: 0rem;
+
+                h1 {
+                    font-size: 200%;
+                }
+
+                p {
+                    font-size: 95%;
+                }
+                footer{
+                    img {
+                        height: 10%;
+                    }
+                }
+               
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .app {
+
+        .main {
+            padding-left: 0rem;
+            padding-right: 0rem;
+
+            section {
+                h1 {
+                    font-size: 100%;
+                }
+
+                p {
+                    font-size: 94%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {}
