@@ -1,6 +1,6 @@
 import "./styles/style.scss";
 import "@shoelace-style/shoelace/dist/themes/light.css";
-import "@shoelace-style/shoelace";
+//import "@shoelace-style/shoelace";
 
 const menuIcon = document.getElementById("menuIcon");
 const navBar = document.querySelector(".navBar");
