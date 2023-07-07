@@ -37,7 +37,7 @@ let htmlTemplate= `
                 </sl-menu>
             </sl-dropdown>
     <sl-dropdown>
-       <sl-button slot="trigger" caret variant="text" >Features</sl-button>
+       <sl-button slot="trigger" caret variant="text" >Company</sl-button>
        <sl-menu>
             <sl-menu-item>
                 History
