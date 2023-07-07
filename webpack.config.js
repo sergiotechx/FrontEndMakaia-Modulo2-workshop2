@@ -1,14 +1,16 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+
 module.exports = {
   mode: "none",
   entry: {
-    app: ["@babel/polyfill", "./src/app/scripts/main.js"],
+    app: ["@babel/polyfill", "./src/app/index.js"],
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "js/app.bundle.js",
+    filename: "js/[name].bundle.js",
   },
   devServer: {
     port: 5050,
@@ -18,31 +20,23 @@ module.exports = {
       {
         test: /\.js$/i,
         loader: "babel-loader",
-        
       },
       {
-        test: /\.(css|scss)$/i,
+        test: /\.s?css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              outputPath: "images",
-            },
-          },
-        ],
+        type: "asset/resource",
       },
+
       {
         test: /\.html$/i,
         use: [
           {
             loader: "html-loader",
-          }
-        ]
+          },
+        ],
       },
     ],
   },
@@ -60,8 +54,25 @@ module.exports = {
         useShortDoctype: true,
       },
     }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./src/images", to: "images" },
+        {
+          from: path.resolve(
+            __dirname,
+            "node_modules/@shoelace-style/shoelace/dist/assets/icons"
+          ),
+          to: path.resolve(__dirname, "build/assets/icons"),
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
-      filename: "css/app.bundle.css",
+      filename: "css/[name].bundle.css",
+      chunkFilename: "css/[name].bundle.css",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "scss/[name].bundle.scss",
+      chunkFilename: "scss/[name].bundle.scss",
     }),
   ],
 };
